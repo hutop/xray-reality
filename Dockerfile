@@ -10,9 +10,16 @@ ENV EXPOSE_PORT=${CUS_PORT}
 
 # Install dependencies
 RUN apt-get update && \
-    DEBIAN_FRONTEND=noninteractive apt-get install -y curl unzip jq openssl qrencode unzip tzdata && \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends systemd dbus curl unzip jq openssl qrencode unzip tzdata && \
     apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+# clean the default unit of systemd
+RUN rm -f /lib/systemd/system/*.wants/* && \
+    rm -f /etc/systemd/system/*.wants/* && \
+    rm -f /lib/systemd/system/local-fs.target.wants/* && \
+    rm -f /lib/systemd/system/sockets.target.wants/*udev* && \
+    rm -f /lib/systemd/system/sockets.target.wants/*initctl*
 
 # Set the timezone
 RUN ln -fs /usr/share/zoneinfo/UTC /etc/localtime && \

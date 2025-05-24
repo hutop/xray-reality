@@ -9,7 +9,7 @@ path=$(jq -r '.path' default.json)
 
 bash -c "$(curl -L https://github.com/XTLS/Xray-install/raw/main/install-release.sh)" @ install --version v1.8.23
 
-json=$(curl -s https://raw.githubusercontent.com/hutop/xray-reality/refs/heads/master/config.json)
+json=$(echo default.json)
 
 keys=$(xray x25519)
 pk=$(echo "$keys" | awk '/Private key:/ {print $3}')
