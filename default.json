@@ -1,7 +1,7 @@
 {
-    "name": "vless+tls+h2+reality",
+    "name": "XrayReality",
     "email":"sajjaddg",
-    "port": 8000,
+    "port": 8443,
     "sni": "www.openstreetmap.org",
     "path": "%2F"
 }

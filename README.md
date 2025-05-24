@@ -23,15 +23,15 @@ curl -fsSL https://get.docker.com | sh
 ``` bash
 git clone https://github.com/hutop/xray-reality.git && cd xray-reality
 ```
-2. build docker image , arg PORT is what you want to use, default is 443, you can change it to any other port you want, like 8443.
+1. build docker image , arg CUS_PORT is what you want to use, default is 443, you can change it to any port you want, like 8443.
 ``` bash
-docker build --build-arg PORT=443 -t xrayreality .
+docker build --build-arg CUS_PORT=443 -t xrayreality .
 ```
-3. run 
+1. run 
 ``` bash
- docker run -d --name xrayreality -p ${HOST_PORT}:${THE_BUILD_ARG_PORT} xrayreality
+docker run -d --name xrayreality -p ${HOST_PORT}:${THE_BUILD_ARG_PORT} xrayreality
 ```
-4. get connection config :
+1. get connection config :
 > get url
 ``` bash
 docker exec -it xrayreality cat /root/test.url

@@ -4,7 +4,9 @@ LABEL maintainer="hutopchan@yahoo.com"
 LABEL version="0.1"
 LABEL description="docker image for xray reality from https://github.com/sajjaddg/xray-reality"
 
-ARG $PORT = 443
+ARG CUS_PORT=443
+
+ENV EXPOSE_PORT=${CUS_PORT}
 
 # Install dependencies
 RUN apt-get update && \
@@ -26,11 +28,11 @@ RUN curl -L -H "Cache-Control: no-cache" -o /tmp/xray.zip https://github.com/XTL
 #install xray-reality
 WORKDIR /root/
 COPY ./conf.docker.sh ./install.sh
-ENV EXPOSE_PORT = $PORT
+COPY ./default.json ./default.json
 RUN sh install.sh
 RUN qrencode -s 50 -o qr.png $(cat test.url)
 #end 
 
 ENTRYPOINT ["tail", "-f", "/dev/null"]
 
-EXPOSE ${PORT}
+EXPOSE ${CUS_PORT}
