@@ -25,7 +25,7 @@ git clone https://github.com/hutop/xray-reality.git && cd xray-reality
 ```
 2. build docker image , arg PORT is what you want to use, default is 443, you can change it to any other port you want, like 8443.
 ``` bash
-docker build -t --build-arg PORT=443 xrayreality .
+docker build --build-arg PORT=443 -t xrayreality .
 ```
 3. run 
 ``` bash
